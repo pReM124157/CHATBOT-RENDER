@@ -4,110 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HindiFinancialNLP v2 - Smart Financial Assistant</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans h-screen flex flex-col md:flex-row overflow-hidden">
+<body class="app-shell">
 
-    <aside class="hidden md:flex flex-col w-80 bg-slate-950 border-r border-slate-800 p-4 justify-between">
+    <aside class="sidebar">
         <div>
-            <div class="flex items-center gap-3 mb-8 px-2">
-                <div class="bg-emerald-500 p-2 rounded-xl text-slate-950">
-                    <i data-lucide="wallet-cards"></i>
+            <div class="brand-block">
+                <div class="brand-icon icon-chip" aria-hidden="true">
+                    <i data-lucide="wallet-cards" data-fallback="W"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg tracking-wide">HindiFinancial AI</h1>
-                    <span class="text-xs text-emerald-400 font-medium flex items-center gap-1">
-                        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span> Self-Trained Engine v2
+                    <h1 class="brand-title">HindiFinancial AI</h1>
+                    <span class="brand-status">
+                        <span class="status-dot"></span> Self-Trained Engine v2
                     </span>
                 </div>
             </div>
 
-            <div class="space-y-4">
-                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
-                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                        <i data-lucide="database" class="w-4 h-4"></i> Active Context
+            <div class="info-stack">
+                <div class="info-card">
+                    <h3 class="panel-title">
+                        <span class="icon-inline" aria-hidden="true">
+                            <i data-lucide="database" data-fallback="DB"></i>
+                        </span>
+                        Active Context
                     </h3>
-                    <p class="text-sm text-slate-300">Built for Hindi and Hinglish questions on SIP, SWP, mutual funds, and basic risk guidance.</p>
+                    <p class="panel-copy">Built for Hindi and Hinglish questions on SIP, SWP, mutual funds, and basic risk guidance.</p>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
-                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                        <i data-lucide="calculator" class="w-4 h-4"></i> Supported Calculations
+                <div class="info-card">
+                    <h3 class="panel-title">
+                        <span class="icon-inline" aria-hidden="true">
+                            <i data-lucide="calculator" data-fallback="CALC"></i>
+                        </span>
+                        Supported Calculations
                     </h3>
-                    <ul class="text-xs text-slate-400 space-y-1 list-disc list-inside">
+                    <ul class="feature-list">
                         <li>SIP (Systematic Investment)</li>
                         <li>SWP (Systematic Withdrawal)</li>
-                        <li>Risk and mutual fund Q&A</li>
+                        <li>Risk and mutual fund Q&amp;A</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="text-xs text-slate-500 border-t border-slate-800 pt-4 px-2 flex justify-between items-center">
+        <div class="sidebar-footer">
             <span>Powered by Flask + Browser Voice</span>
-            <span class="bg-slate-800 px-2 py-1 rounded text-[10px]">Secure 256-Bit</span>
+            <span class="footer-badge">Secure 256-Bit</span>
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col h-full relative bg-slate-900">
-        <header class="h-16 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-4 flex justify-between items-center z-10">
-            <div class="flex items-center gap-3 md:hidden">
-                <div class="bg-emerald-500 p-2 rounded-lg text-slate-950">
-                    <i data-lucide="wallet-cards" class="w-5 h-5"></i>
+    <main class="main-panel">
+        <header class="topbar">
+            <div class="mobile-brand">
+                <div class="mobile-brand-icon icon-chip" aria-hidden="true">
+                    <i data-lucide="wallet-cards" data-fallback="W"></i>
                 </div>
-                <h1 class="font-bold text-md">HindiFinancial AI</h1>
+                <h1 class="mobile-brand-title">HindiFinancial AI</h1>
             </div>
-            <div class="hidden md:flex items-center gap-2 text-sm text-slate-400">
-                <i data-lucide="message-square" class="w-4 h-4"></i>
+            <div class="session-indicator">
+                <span class="icon-inline" aria-hidden="true">
+                    <i data-lucide="message-square" data-fallback="MSG"></i>
+                </span>
                 <span>Active Session: Personal Investment Advisory</span>
             </div>
 
-            <div class="flex items-center gap-2">
-                <button id="clearChatButton" class="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-slate-100 transition" title="Clear Chat">
-                    <i data-lucide="rotate-ccw" class="w-5 h-5"></i>
+            <div class="toolbar">
+                <button id="clearChatButton" class="icon-button" title="Clear Chat" aria-label="Clear chat">
+                    <i data-lucide="rotate-ccw" data-fallback="CLR"></i>
                 </button>
-                <button id="speakerToggleButton" class="p-2 hover:bg-slate-800 rounded-lg text-emerald-400 hover:text-emerald-300 transition" title="Bot Voice On">
-                    <i data-lucide="volume-2" class="w-5 h-5"></i>
+                <button id="speakerToggleButton" class="icon-button icon-button-active" title="Bot Voice On" aria-label="Toggle bot voice">
+                    <i data-lucide="volume-2" data-fallback="VOL"></i>
                 </button>
             </div>
         </header>
 
-        <section id="messages" class="flex-1 overflow-y-auto p-4 space-y-6 pb-32 scrollbar-thin scrollbar-thumb-slate-800"></section>
+        <section id="messages" class="messages-panel"></section>
 
-        <footer class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent pt-10 z-10">
-            <div id="statusBar" class="max-w-3xl mx-auto text-xs text-slate-400 px-1 pb-2">Ready. You can type or use the mic.</div>
+        <footer class="composer-shell">
+            <div id="statusBar" class="status-bar">Ready. You can type or use the mic.</div>
 
-            <div class="max-w-3xl mx-auto bg-slate-950 border border-slate-800 rounded-2xl p-2 shadow-2xl flex items-center gap-2 relative">
-                <button id="speakerHintButton" class="p-2.5 text-slate-400 hover:text-slate-200 hover:bg-slate-900 rounded-xl transition flex-shrink-0" title="Bot voice toggle">
-                    <i data-lucide="languages" class="w-5 h-5"></i>
+            <div class="composer-card">
+                <button id="speakerHintButton" class="icon-button icon-button-muted" title="Bot voice toggle" aria-label="Bot voice toggle">
+                    <i data-lucide="languages" data-fallback="HI"></i>
                 </button>
 
-                <input id="messageInput" type="text" placeholder="Ask here... (e.g., '15 saal ke liye SIP batao')"
-                       class="w-full bg-transparent border-0 outline-none text-sm text-slate-100 placeholder-slate-500 py-2 px-1 focus:ring-0">
+                <input id="messageInput" type="text" placeholder="Ask here... (e.g., '15 saal ke liye SIP batao')" class="message-input">
 
-                <button id="micButton" class="p-2.5 text-slate-400 hover:text-emerald-400 hover:bg-slate-900 rounded-xl transition flex-shrink-0 relative group" title="Speak in Hindi/Hinglish">
-                    <i data-lucide="mic" class="w-5 h-5"></i>
-                    <span class="absolute inset-0 rounded-xl bg-emerald-500/10 animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                <button id="micButton" class="icon-button icon-button-muted mic-button" title="Speak in Hindi/Hinglish" aria-label="Voice input">
+                    <i data-lucide="mic" data-fallback="MIC"></i>
+                    <span class="mic-pulse"></span>
                 </button>
 
-                <button id="sendButton" class="bg-emerald-500 text-slate-950 p-2.5 rounded-xl hover:bg-emerald-400 transition font-medium flex-shrink-0" title="Send">
-                    <i data-lucide="send" class="w-5 h-5"></i>
+                <button id="sendButton" class="send-button" title="Send" aria-label="Send message">
+                    <i data-lucide="send" data-fallback="SEND"></i>
                 </button>
             </div>
 
-            <div class="max-w-3xl mx-auto flex gap-2 overflow-x-auto py-2 px-1 no-scrollbar text-xs text-slate-400 whitespace-nowrap">
-                <button class="quick-prompt bg-slate-900 border border-slate-800 px-3 py-1 rounded-full hover:bg-slate-800 transition" data-prompt="₹5000 monthly SIP 10 saal ke liye kitna hoga?">📊 ₹5000 Monthly SIP</button>
-                <button class="quick-prompt bg-slate-900 border border-slate-800 px-3 py-1 rounded-full hover:bg-slate-800 transition" data-prompt="Best mid-cap mutual fund kaise choose karein?">🏢 Best Mid-Cap Funds</button>
-                <button class="quick-prompt bg-slate-900 border border-slate-800 px-3 py-1 rounded-full hover:bg-slate-800 transition" data-prompt="Nifty me risk kaise samjhein?">🛑 Understand Market Risk</button>
+            <div class="quick-prompts">
+                <button class="quick-prompt" data-prompt="₹5000 monthly SIP 10 saal ke liye kitna hoga?">📊 ₹5000 Monthly SIP</button>
+                <button class="quick-prompt" data-prompt="Best mid-cap mutual fund kaise choose karein?">🏢 Best Mid-Cap Funds</button>
+                <button class="quick-prompt" data-prompt="Nifty me risk kaise samjhein?">🛑 Understand Market Risk</button>
             </div>
         </footer>
     </main>
-
-    <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
 
     <script>
         const messagesEl = document.getElementById("messages");
@@ -135,17 +137,39 @@
             return div.innerHTML;
         }
 
+        function renderIcons() {
+            const lucideReady = window.lucide && typeof window.lucide.createIcons === "function";
+
+            document.querySelectorAll("[data-lucide]").forEach(function (iconEl) {
+                const fallback = iconEl.dataset.fallback || iconEl.getAttribute("data-lucide") || "?";
+                iconEl.textContent = fallback;
+                iconEl.classList.add("icon-fallback");
+                iconEl.setAttribute("aria-hidden", "true");
+            });
+
+            if (!lucideReady) {
+                return;
+            }
+
+            window.lucide.createIcons();
+            document.querySelectorAll("[data-lucide]").forEach(function (iconEl) {
+                if (iconEl.tagName.toLowerCase() === "svg") {
+                    iconEl.classList.remove("icon-fallback");
+                }
+            });
+        }
+
         function renderBotMessage(text) {
             return `
-                <div class="flex gap-3 max-w-3xl">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-slate-950 flex-shrink-0">
-                        <i data-lucide="bot" class="w-5 h-5"></i>
+                <div class="message-row bot-row">
+                    <div class="avatar avatar-bot" aria-hidden="true">
+                        <i data-lucide="bot" data-fallback="BOT"></i>
                     </div>
-                    <div class="space-y-1">
-                        <div class="bg-slate-950 border border-slate-800 px-4 py-3 rounded-2xl rounded-tl-none shadow-lg">
-                            <p class="text-sm leading-relaxed text-slate-200 whitespace-pre-line">${escapeHtml(text)}</p>
+                    <div class="message-stack">
+                        <div class="message-bubble message-bubble-bot">
+                            <p class="message-text">${escapeHtml(text)}</p>
                         </div>
-                        <span class="text-[10px] text-slate-500 block px-1">${formatTime()}</span>
+                        <span class="message-time">${formatTime()}</span>
                     </div>
                 </div>
             `;
@@ -153,12 +177,12 @@
 
         function renderUserMessage(text) {
             return `
-                <div class="flex gap-3 max-w-3xl ml-auto justify-end">
-                    <div class="space-y-1 text-right">
-                        <div class="bg-emerald-600 text-white px-4 py-3 rounded-2xl rounded-tr-none shadow-lg shadow-emerald-900/20">
-                            <p class="text-sm leading-relaxed whitespace-pre-line">${escapeHtml(text)}</p>
+                <div class="message-row user-row">
+                    <div class="message-stack message-stack-user">
+                        <div class="message-bubble message-bubble-user">
+                            <p class="message-text">${escapeHtml(text)}</p>
                         </div>
-                        <span class="text-[10px] text-slate-500 block px-1">${formatTime()}</span>
+                        <span class="message-time">${formatTime()}</span>
                     </div>
                 </div>
             `;
@@ -166,7 +190,7 @@
 
         function appendMessage(role, text) {
             messagesEl.insertAdjacentHTML("beforeend", role === "user" ? renderUserMessage(text) : renderBotMessage(text));
-            lucide.createIcons();
+            renderIcons();
             messagesEl.scrollTop = messagesEl.scrollHeight;
         }
 
@@ -187,8 +211,8 @@
 
         function updateSpeakerUi() {
             speakerToggleButtonEl.title = speakerEnabled ? "Bot Voice On" : "Bot Voice Off";
-            speakerToggleButtonEl.classList.toggle("text-emerald-400", speakerEnabled);
-            speakerToggleButtonEl.classList.toggle("text-slate-400", !speakerEnabled);
+            speakerToggleButtonEl.classList.toggle("icon-button-active", speakerEnabled);
+            speakerToggleButtonEl.classList.toggle("icon-button-muted", !speakerEnabled);
             speakerHintButtonEl.title = speakerEnabled ? "Bot voice is on" : "Bot voice is off";
         }
 
@@ -258,7 +282,7 @@
 
             recognition.onstart = function () {
                 recognitionActive = true;
-                micButtonEl.classList.add("text-emerald-400");
+                micButtonEl.classList.add("is-listening");
                 console.log("Voice recognition started");
                 setStatus("Listening...");
             };
@@ -273,7 +297,7 @@
 
             recognition.onerror = function (event) {
                 recognitionActive = false;
-                micButtonEl.classList.remove("text-emerald-400");
+                micButtonEl.classList.remove("is-listening");
                 console.error("Voice error:", event.error);
                 alert("Mic error: " + event.error);
                 setStatus(`Voice error: ${event.error}`);
@@ -281,7 +305,7 @@
 
             recognition.onend = function () {
                 recognitionActive = false;
-                micButtonEl.classList.remove("text-emerald-400");
+                micButtonEl.classList.remove("is-listening");
                 if (!inputEl.value.trim()) {
                     setStatus("Voice input ended.");
                 }
@@ -346,7 +370,7 @@
         setupRecognition();
         updateSpeakerUi();
         clearChat();
-        lucide.createIcons();
+        renderIcons();
     </script>
 </body>
 </html>
