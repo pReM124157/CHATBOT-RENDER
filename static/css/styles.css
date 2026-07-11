@@ -68,6 +68,18 @@ button:disabled {
     padding: 1rem;
     background: rgba(2, 6, 23, 0.98);
     border-right: 1px solid var(--border);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #1e293b transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 999px;
 }
 
 .brand-block {
